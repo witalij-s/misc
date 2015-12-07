@@ -11,22 +11,19 @@ def mirrorWorkspacePoint(x, y, z, a, b, c):
 	print "XYZ: %d | %d | %d " % (x, y, z)
 	print "ABC: %f | %f | %f " % (a, b, c)
 
-	# Create the origin trafo with the point translation
+	# Create the origin trafo with the point translation, transformation from the paper mentioned above
 	point = np.matrix([[np.cos(a)*np.cos(b), np.cos(a)*np.sin(b)*np.sin(c)-np.sin(a)*np.cos(c), np.cos(a)*np.sin(b)*np.cos(c)+np.sin(a)*np.sin(c),x],
-				       [np.sin(a)*np.cos(b), np.sin(a)*np.sin(b)*np.sin(c)+np.cos(a)*np.cos(c), np.sin(a)*np.sin(b)*np.cos(c)-np.cos(a)*np.sin(c),y],
-					   [-np.sin(b), np.cos(b)*np.sin(c), np.cos(b)*np.cos(c), z],
-					   [0,0,0,1]])	
-
-	# Manual point
-	#point = np.matrix([[np.cos(np.pi/4),-np.sin(np.pi/4),0,x], [np.sin(np.pi/4),np.cos(np.pi/4),0,y], [0,0,1,z], [0,0,0,1]])
+					[np.sin(a)*np.cos(b), np.sin(a)*np.sin(b)*np.sin(c)+np.cos(a)*np.cos(c), np.sin(a)*np.sin(b)*np.cos(c)-np.cos(a)*np.sin(c),y],
+					[-np.sin(b), np.cos(b)*np.sin(c), np.cos(b)*np.cos(c), z],
+					[0,0,0,1]])	
 
 	# Create the homogenous mirror matrix
 	mirror_xz = np.matrix([[1,0,0,0],
-				    	   [0,-1,0,0],
-					 	   [0,0,1,0],
-					  	   [0,0,0,1]])
+						[0,-1,0,0],
+						[0,0,1,0],
+						[0,0,0,1]])
 
-	#  result of transformation
+	# result of transformation
 	result = mirror_xz * point
 
 	# Print the point which will be transformated
@@ -68,17 +65,8 @@ def mirrorWorkspacePoint(x, y, z, a, b, c):
 	print "(Final) ptp move : %d %d %d %f %f %f 0.2 0.0" % (result[0,3], result[1,3], result[2,3], alpha, beta, gamma)
 
 ####################
-####  Examples  ####
+####  Example  #####
 ####################
 
-# Costume point 1
-# mirrorWorkspacePoint(373.06, -363.2, 584.5, -3.073, -0.355, -1.55)
-
-# Costume point 2
-# mirrorWorkspacePoint(225.180, 519.401, 918.081, -3.03, 0.029, 1.124)
-
-# Costume point 3
+# Costume point 
 mirrorWorkspacePoint(-63.4709539762285, -297.90564707226673, 1096.71747634639, -2.3434756027019388, 0.8819053837303993, -0.2372932845653568)
-
-# Pose 3
-# mirrorWorkspacePoint(380,100,600,0,np.pi/4, np.pi/2)
