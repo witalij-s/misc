@@ -13,15 +13,15 @@ def mirrorWorkspacePoint(x, y, z, a, b, c):
 
 	# Create the origin trafo with the point translation, transformation from the paper mentioned above
 	point = np.matrix([[np.cos(a)*np.cos(b), np.cos(a)*np.sin(b)*np.sin(c)-np.sin(a)*np.cos(c), np.cos(a)*np.sin(b)*np.cos(c)+np.sin(a)*np.sin(c),x],
-					[np.sin(a)*np.cos(b), np.sin(a)*np.sin(b)*np.sin(c)+np.cos(a)*np.cos(c), np.sin(a)*np.sin(b)*np.cos(c)-np.cos(a)*np.sin(c),y],
-					[-np.sin(b), np.cos(b)*np.sin(c), np.cos(b)*np.cos(c), z],
-					[0,0,0,1]])	
+		[np.sin(a)*np.cos(b), np.sin(a)*np.sin(b)*np.sin(c)+np.cos(a)*np.cos(c), np.sin(a)*np.sin(b)*np.cos(c)-np.cos(a)*np.sin(c),y],
+		[-np.sin(b), np.cos(b)*np.sin(c), np.cos(b)*np.cos(c), z],
+		[0,0,0,1]])	
 
 	# Create the homogenous mirror matrix
 	mirror_xz = np.matrix([[1,0,0,0],
-						[0,-1,0,0],
-						[0,0,1,0],
-						[0,0,0,1]])
+		[0,-1,0,0],
+		[0,0,1,0],
+		[0,0,0,1]])
 
 	# result of transformation
 	result = mirror_xz * point
